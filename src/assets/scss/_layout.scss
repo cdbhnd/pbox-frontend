@@ -1,0 +1,12 @@
+.bottom-bar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.bottom-bar > * {
+	margin-bottom: 0 !important;
+}

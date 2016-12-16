@@ -3,7 +3,7 @@
 
     angular
         .module('pbox')
-        .config(['$stateProvider', function($stateProvider) { 
+        .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) { 
 
         	$stateProvider
                 .state('job-create', {
@@ -11,6 +11,8 @@
                     templateUrl: 'app/job/job.create.html',
                     controller: 'jobCreateController',
                     controllerAs: 'vm'
-                });
+                })
+
+            $urlRouterProvider.otherwise('/');
         }]);
 })();

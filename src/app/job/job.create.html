@@ -1,8 +1,19 @@
 <ion-view style="background-color:#1BD0D0;">
-  <ion-content padding="true" class="has-header">
-    <button id="page-button1" class="button button-stable  button-block">SMALL</button>
-    <button id="page-button2" class="button button-stable  button-block">MEDIUM</button>
-    <button id="page-button3" class="button button-stable  button-block">LARGE</button>
-    <button id="page-button4" class="button button-energized  button-block">ORDER</button>
-  </ion-content>
+    <ion-content padding="true" class="has-header">
+        <button 
+        	class="button button-block" 
+        	ng-click="vm.selectSize('S')"
+        	ng-class="{ 'button-stable': vm.selectedSize != 'S', 'button-assertive': vm.selectedSize == 'S' }">SMALL</button>
+        <button 
+        	class="button button-block" 
+        	ng-click="vm.selectSize('M')"
+        	ng-class="{ 'button-stable': vm.selectedSize != 'M', 'button-assertive': vm.selectedSize == 'M' }">MEDIUM</button>
+        <button 
+        	class="button button-block" 
+        	ng-click="vm.selectSize('L')"
+        	ng-class="{ 'button-stable': vm.selectedSize != 'L', 'button-assertive': vm.selectedSize == 'L' }">LARGE</button>
+    </ion-content>
+    <div class="bottom-bar">
+        <button class="button button-energized button-full" ng-click="vm.orderJob()">ORDER</button>
+    </div>
 </ion-view>

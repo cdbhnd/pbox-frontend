@@ -6,62 +6,76 @@
         .controller('jobCreateController', jobCreateController);
 
     /** @ngInject */
-    function jobCreateController($q, jobService, geolocationService) {
-    	
-    	var vm = this;
+    function jobCreateController($q, $ionicPopup, jobService, geolocationService) {
 
-    	vm.selectedSize = 'S';
+        var vm = this;
 
-    	vm.selectSize = selectSize;
-    	vm.orderJob = orderJob;
+        vm.selectedSize = 'S';
 
-    	/////////////////////////////////////
+        vm.selectSize = selectSize;
+        vm.orderJob = orderJob;
 
-    	function selectSize(size) {
-    		vm.selectSize = size;
-    	}
+        /////////////////////////////////////
 
-    	function orderJob() {
-    		return validateJob
-    			.then(getCurrentUsersLocation)
-    			.then(doCreateJob)
-    			.then(createSuccess)
-    			.catch(createError);
-    	}
+        function selectSize(size) {
+            vm.selectedSize = size;
+        }
 
-    	function validateJob() {
-    		return $q.when(function() {
-    			if (!vm.selectedSize) {
-    				return $q.reject('Size not selected');
-    			}
-    			return true;
-    		}());
-    	}
+        function orderJob() {
+            return validateJob()
+                .then(getCurrentUsersLocation)
+                .then(doCreateJob)
+                .then(createSuccess)
+                .catch(createError);
+        }
 
-    	function getCurrentUsersLocation() {
-    		return geolocationService.currentLocation()
-    			.catch(function(e) {
-    				return $q.reject('Location could not be determined');
-    			});
-    	}
+        function validateJob() {
+            return $q.when(function() {
+                if (!vm.selectedSize) {
+                    return $q.reject('Size not selected');
+                }
+                return true;
+            }());
+        }
 
-    	function doCreateJob(location) {
-    		return jobService.create({
-    			pickup: location,
-    			size: vm.selectedSize
-    		});
-    	}
+        function getCurrentUsersLocation() {
+            return geolocationService.currentLocation()
+                .catch(function(e) {
+                    return $q.reject('Location could not be determined');
+                });
+        }
 
-    	function createSuccess() {
-    		return $q.when(function() {
-    			alert('Success');
-    		}());
-    	}
+        function doCreateJob(location) {
+            return jobService.create({
+                pickup: location,
+                size: vm.selectedSize
+            });
+        }
 
-    	function createError() {
-    		return $q.when(function() {
-    			alert('Error');
-    		}());
-    	}
+        function createSuccess() {
+            return $q.when(function() {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'SUCCESS!',
+                    template: 'Job created successfully'
+                });
+
+                alertPopup.then(function(res) {
+                    // redirect to the job list
+                });
+            }());
+        }
+
+        function createError() {
+            return $q.when(function() {
+                var alertPopup = $ionicPopup.alert({
+                    title: 'ERROR!',
+                    template: 'Job create failed'
+                });
+
+                alertPopup.then(function(res) {
+                    // ???
+                });
+            }());
+        }
     }
 })();

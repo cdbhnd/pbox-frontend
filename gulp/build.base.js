@@ -101,7 +101,7 @@
             ])
             .pipe(preprocess({ context: { ENV: _ENV, ENV_CONFIG: _ENV_CONFIG, DEBUG: (_ENV == config.environments.DEVELOPMENT) } }))
             .pipe(templateCache('templateCache.js', {
-                module: 'travis',
+                module: 'pbox',
                 root: 'app'
             }))
             .pipe(gulp.dest(config.paths.tmp + '/templateCache/'));
@@ -116,7 +116,8 @@
                 config.paths.ionic + '/js/angular-ui/angular-ui-router.min.js',
                 config.paths.ionic + '/js/ionic.min.js',
                 config.paths.ionic + '/js/ionic-angular.min.js',
-                config.paths.ionic + '/js/ionic-bundle.min.js'
+                config.paths.ionic + '/js/ionic-bundle.min.js',
+                config.paths.node_modules + '/ng-cordova/dist/ng-cordova.min.js'
             ])
             .pipe(concatenate('libraries.js'))
             .pipe(gulp.dest(config.paths.tmp + '/js'));
@@ -141,7 +142,7 @@
     gulp.task('styles', function() {
         return gulp.src([
                 config.paths.ionic + '/css/ionic.min.css',
-                config.paths.src + '/v2/assets/css/index.scss'
+                config.paths.src + '/assets/scss/index.scss'
             ])
             .pipe(sass().on('error', sass.logError))
             .pipe(concatenate('styles.css'))

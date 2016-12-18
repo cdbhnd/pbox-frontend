@@ -55,8 +55,12 @@
         function createSuccess() {
             return $q.when(function() {
                 var alertPopup = $ionicPopup.alert({
-                    title: 'SUCCESS!',
-                    template: 'Job created successfully'
+                    title: 'JOB CREATED!',
+                    template: '',
+                    buttons: [{
+                        text: 'OK',
+                        type: 'button-energized'
+                    }]
                 });
 
                 alertPopup.then(function(res) {

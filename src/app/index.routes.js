@@ -3,13 +3,19 @@
 
     angular
         .module('pbox')
-        .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) { 
+        .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-        	$stateProvider
+            $stateProvider
                 .state('job-create', {
                     url: '/',
                     templateUrl: 'app/job/job.create.html',
                     controller: 'jobCreateController',
+                    controllerAs: 'vm'
+                })
+                .state('job-list', {
+                    url: '/jobs',
+                    templateUrl: 'app/job/job.list.html',
+                    controller: 'jobListController',
                     controllerAs: 'vm'
                 })
 

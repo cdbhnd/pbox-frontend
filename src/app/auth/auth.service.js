@@ -18,7 +18,8 @@
         //////////////////////////////////
 
         function init() {
-            registerUserIfNeeded();
+            registerUserIfNeeded()
+                .then(loginUserIfNeeded);
         }
 
         function register(user) {
@@ -86,9 +87,7 @@
                             return true;
                         })
                         .catch(function(errr) {
-                            alert('Server unavailable at the moment, please try again later.');
-                            console.log(errr);
-                            return $q.reject('server unavailable');
+                            return serverUnavailable($q, errr);
                         });
                 }
                 return true;
@@ -96,7 +95,24 @@
         }
 
         function loginUserIfNeeded() {
-            return $q.when(function() {}());
+            return $q.when(function() {
+                if (!!$localStorage.current_user && !!$localStorage.current_user.token) {
+                    return true;
+                }
+                if (!$localStorage.credentials) {
+                    return serverUnavailable($q, { error: 'credentials missing' });
+                }
+                return login($localStorage.credentials.username, $localStorage.credentials.password)
+                    .catch(function(error) {
+                        return serverUnavailable($q, error);
+                    });
+            }());
+        }
+
+        function serverUnavailable(q, error) {
+            alert('Server unavailable at the moment, please try again later.');
+            console.log(error);
+            return q.reject('server unavailable');
         }
     }
 })();

@@ -1,5 +1,5 @@
 {
 	"pboxAPI": {
-        "HOST": "https://pbox-server.herokuapp.com"
+        "HOST": "http://localhost:8080"
     }
 }

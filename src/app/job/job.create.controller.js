@@ -6,7 +6,7 @@
         .controller('jobCreateController', jobCreateController);
 
     /** @ngInject */
-    function jobCreateController($q, $ionicPopup, jobService, geolocationService) {
+    function jobCreateController($q, $ionicPopup, $state, jobService, geolocationService) {
 
         var vm = this;
 
@@ -64,7 +64,7 @@
                 });
 
                 alertPopup.then(function(res) {
-                    // redirect to the job list
+                    $state.go('job-list');
                 });
             }());
         }

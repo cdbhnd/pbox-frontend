@@ -117,7 +117,8 @@
                 config.paths.ionic + '/js/ionic.min.js',
                 config.paths.ionic + '/js/ionic-angular.min.js',
                 config.paths.ionic + '/js/ionic-bundle.min.js',
-                config.paths.node_modules + '/ng-cordova/dist/ng-cordova.min.js'
+                config.paths.node_modules + '/ng-cordova/dist/ng-cordova.min.js',
+                config.paths.node_modules + '/ngstorage/ngStorage.min.js'
             ])
             .pipe(concatenate('libraries.js'))
             .pipe(gulp.dest(config.paths.tmp + '/js'));

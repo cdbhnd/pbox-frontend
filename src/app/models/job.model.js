@@ -15,6 +15,7 @@
             this.status = obj && obj.status ? obj.status : null;
             this.name = obj && obj.name ? obj.name : null;
             this.owner = obj && obj.owner ? obj.owner : null;
+            this.createdAt = obj && obj.createdAt ? obj.createdAt : null;
         }
         return JobModel;
     }

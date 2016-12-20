@@ -6,11 +6,9 @@
         .controller('jobListController', jobListController);
 
     /** @ngInject */
-    function jobListController($localStorage, jobService) {
+    function jobListController(jobService) {
 
         var vm = this;
-
-        var token = 'Bearer ' + $localStorage.current_user.token;
 
         vm.jobs = [];
 
@@ -23,7 +21,7 @@
         /////////////////////////////////////
 
         function loadJobs() {
-            return jobService.getAll(token)
+            return jobService.getAll()
                 .then(function(response) {
                     console.log(response);
                     vm.jobs = response;

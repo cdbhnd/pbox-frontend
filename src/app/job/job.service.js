@@ -25,11 +25,10 @@
                 });
         }
 
-        function getAllJobs(token) {
+        function getAllJobs() {
             return pboxApi.http({
                     method: config.httpMethods.GET,
-                    url: config.pboxAPI.JOBS,
-                    data: token
+                    url: config.pboxAPI.JOBS
                 })
                 .then(function(data) {
                     var jobs = [];

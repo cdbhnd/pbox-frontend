@@ -25,7 +25,7 @@
                 .then(function(response) {
                     console.log(response);
                     vm.jobs = response;
-                })
+                });
         }
     }
 })();

@@ -6,13 +6,15 @@
     // angular.module is a global place for creating, registering and retrieving Angular modules
     // 'pbox' is the name of this angular module example (also set in a <body> attribute in index.html)
     // the 2nd parameter is an array of 'requires'
-    angular.module('pbox', ['ionic',
-        'ngCordova',
-        'ngStorage',
-        'pbox.job',
-        'pbox.geolocation',
-        'pbox.api',
-        'pbox.auth'])
+    angular.module('pbox', ['angularMoment',
+            'ionic',
+            'ngCordova',
+            'ngStorage',
+            'pbox.job',
+            'pbox.geolocation',
+            'pbox.api',
+            'pbox.auth'
+        ])
         .run(function($ionicPlatform, geolocationService, authService) {
             $ionicPlatform.ready(function() {
                 if (window.cordova && window.cordova.plugins.Keyboard) {

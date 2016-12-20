@@ -6,7 +6,7 @@
                 <br>
                 <span>Size: {{j.size}}</span>
                 <br>
-                <span>Job created: {{j.createdAt}}</span>
+                <span>Job created: {{j.createdAt | amDateFormat: 'DD/MM/YYYY [at] hA'}}</span>
                 <span class="job-button">></span>
             </li>
         </ul>

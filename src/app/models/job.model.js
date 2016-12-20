@@ -6,7 +6,7 @@
         .factory('JobModel', jobModelFactory);
 
     /** @ngInject */
-    function jobModelFactory() {
+    function jobModelFactory(moment) {
 
         function JobModel(obj) {
             this.id = obj && obj.id ? obj.id : null;
@@ -15,7 +15,7 @@
             this.status = obj && obj.status ? obj.status : null;
             this.name = obj && obj.name ? obj.name : null;
             this.owner = obj && obj.owner ? obj.owner : null;
-            this.createdAt = obj && obj.createdAt ? obj.createdAt : null;
+            this.createdAt = obj && obj.createdAt ? moment(obj.createdAt) : null;
         }
         return JobModel;
     }

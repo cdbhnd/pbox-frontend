@@ -1,45 +1,81 @@
 .bottom-bar {
-	position: fixed;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	margin-bottom: 0;
-	padding-bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
-.bottom-bar > * {
-	margin-bottom: 0 !important;
+.bottom-bar>* {
+    margin-bottom: 0 !important;
 }
 
 .popup {
-	background-color: #1BD0D0 !important;
-	border-radius: 5px !important;
+    background-color: #1BD0D0 !important;
+    border-radius: 5px !important;
 }
 
 .popup .popup-head .popup-title,
 .popup .popup-body {
-	color: #fff !important;
+    color: #fff !important;
 }
 
 .popup .popup-buttons button {
-	border-radius: 5px !important;
+    border-radius: 5px !important;
 }
 
-ion-view {
-	background-image: url(/images/background.jpg) !important;
+ion-view,
+ion-side-menu {
+    background-image: url(/images/background.jpg) !important;
     background-size: cover !important;
 }
 
 ion-header-bar {
-	background: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(255, 255, 255, 0.4) !important;
 }
 
 ion-header-bar h1.title {
-	color: #fff !important;
-	font-size: 28px !important;
+    color: #fff !important;
+    font-size: 28px !important;
 }
 
 .button-stable {
-	background-color: #1BD0D0 !important;
-	color: #fff !important;
+    background-color: #1BD0D0 !important;
+    color: #fff !important;
+}
+
+[nav-bar-transition=ios] [nav-bar=entering] .bar,
+[nav-bar-transition=ios] [nav-bar=active] .bar {
+    background: 0 0 !important;
+}
+
+button.button-icon:before {
+    color: #ffc900 !important;
+    font-weight: bold;
+}
+
+.nav-list {
+    ul {
+        margin-top: 44px;
+        li {
+            cursor: pointer;
+            color: #fff;
+            position: relative;
+            padding: 10px 5px 10px 40px;
+            background-color: #1BD0D0 !important;
+            margin-bottom: 5px;
+            font-size: 22px;
+            span {
+                color: #ffc900 !important;
+            }
+        }
+    }
+    .nav-button {
+        position: absolute;
+        top: 6px;
+        right: 12px;
+        font-size: 35px;
+        color: #ffc900 !important;
+    }
 }

@@ -68,7 +68,7 @@
 
     gulp.task('fonts', function() {
         return gulp.src([
-                config.paths.ionic + '/bootstrap/fonts/*'
+                config.paths.ionic + '/fonts/*.*'
             ])
             .pipe(gulp.dest(config.paths.dist + '/fonts'));
     });

@@ -23,8 +23,6 @@
         function loadJobs() {
             return jobService.getAll()
                 .then(function (response) {
-                    console.log(response);
-                    console.log('ssss');
                     vm.jobs = response;
                     if (response.length == 0) {
                         $ionicPopup.alert({

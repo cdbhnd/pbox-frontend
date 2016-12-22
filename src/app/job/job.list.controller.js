@@ -6,7 +6,7 @@
         .controller('jobListController', jobListController);
 
     /** @ngInject */
-    function jobListController(jobService) {
+    function jobListController(pboxLoader, jobService) {
 
         var vm = this;
 
@@ -21,10 +21,13 @@
         /////////////////////////////////////
 
         function loadJobs() {
+            pboxLoader.loaderOn();
             return jobService.getAll()
                 .then(function(response) {
-                    console.log(response);
                     vm.jobs = response;
+                })
+                .finally(function(){
+                    pboxLoader.loaderOff();
                 });
         }
     }

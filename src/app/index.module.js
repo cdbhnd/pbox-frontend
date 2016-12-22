@@ -13,7 +13,8 @@
             'pbox.job',
             'pbox.geolocation',
             'pbox.api',
-            'pbox.auth'
+            'pbox.auth',
+            'pbox.loader'
         ])
         .run(function($ionicPlatform, geolocationService, authService) {
             $ionicPlatform.ready(function() {

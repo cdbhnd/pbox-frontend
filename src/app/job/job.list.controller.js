@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,8 +6,7 @@
         .controller('jobListController', jobListController);
 
     /** @ngInject */
-    function jobListController(pboxLoader, jobService) {
-
+    function jobListController(pboxLoader, jobService, $ionicPopup) {
         var vm = this;
 
         vm.jobs = [];
@@ -16,15 +15,25 @@
 
         (function activate() {
             loadJobs();
-        }());
+        } ());
 
         /////////////////////////////////////
 
         function loadJobs() {
             pboxLoader.loaderOn();
             return jobService.getAll()
-                .then(function(response) {
+                .then(function (response) {
                     vm.jobs = response;
+                    if (response.length == 0) {
+                        $ionicPopup.alert({
+                            title: 'You do not have any Jobs at the moment !',
+                            template: '',
+                            buttons: [{
+                                text: 'OK',
+                                type: 'button-energized'
+                            }]
+                        });
+                    }
                 })
                 .finally(function(){
                     pboxLoader.loaderOff();

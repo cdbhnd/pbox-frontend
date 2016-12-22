@@ -29,16 +29,18 @@
     <ion-pane>
         <ion-side-menus enable-menu-with-back-views="true">
             <ion-side-menu class="nav-list" side="left">
-                <ul ng-controller="navController as vm">
-                    <li menu-close ng-click="vm.changeState('job-create')">
-                        New Job
-                        <span class="nav-button">></span>
-                    </li>
-                    <li menu-close ng-click="vm.changeState('job-list')">
-                        My Jobs
-                        <span class="nav-button">></span>
-                    </li>
-                </ul>
+                <div class="side-menu-wrapper">
+                    <ul ng-controller="navController as vm">
+                        <li menu-close ng-click="vm.changeState('job-create')">
+                            New Job
+                            <span class="nav-button">></span>
+                        </li>
+                        <li menu-close ng-click="vm.changeState('job-list')">
+                            My Jobs
+                            <span class="nav-button">></span>
+                        </li>
+                    </ul>
+                </div>
             </ion-side-menu>
             <ion-side-menu-content>
                 <ion-nav-bar class="bar-stable">

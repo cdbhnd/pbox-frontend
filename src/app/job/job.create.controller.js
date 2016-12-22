@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,7 +6,7 @@
         .controller('jobCreateController', jobCreateController);
 
     /** @ngInject */
-    function jobCreateController($q, $ionicPopup, $state, jobService, geolocationService) {
+    function jobCreateController(pboxLoader, $scope, $q, $ionicPopup, $state, jobService, geolocationService) {
 
         var vm = this;
 
@@ -22,25 +22,29 @@
         }
 
         function orderJob() {
+            pboxLoader.loaderOn();
             return validateJob()
                 .then(getCurrentUsersLocation)
                 .then(doCreateJob)
                 .then(createSuccess)
-                .catch(createError);
+                .catch(createError)
+                .finally(function() {
+                    pboxLoader.loaderOff();            
+                });
         }
 
         function validateJob() {
-            return $q.when(function() {
+            return $q.when(function () {
                 if (!vm.selectedSize) {
                     return $q.reject('Size not selected');
                 }
                 return true;
-            }());
+            } ());
         }
 
         function getCurrentUsersLocation() {
             return geolocationService.currentLocation()
-                .catch(function(e) {
+                .catch(function (e) {
                     return $q.reject('Location could not be determined');
                 });
         }
@@ -53,7 +57,7 @@
         }
 
         function createSuccess() {
-            return $q.when(function() {
+            return $q.when(function () {
                 var alertPopup = $ionicPopup.alert({
                     title: 'JOB CREATED!',
                     template: '',
@@ -63,23 +67,23 @@
                     }]
                 });
 
-                alertPopup.then(function(res) {
+                alertPopup.then(function (res) {
                     $state.go('job-list');
                 });
-            }());
+            } ());
         }
 
         function createError() {
-            return $q.when(function() {
+            return $q.when(function () {
                 var alertPopup = $ionicPopup.alert({
                     title: 'ERROR!',
                     template: 'Job create failed'
                 });
 
-                alertPopup.then(function(res) {
+                alertPopup.then(function (res) {
                     // ???
                 });
-            }());
+            } ());
         }
     }
 })();

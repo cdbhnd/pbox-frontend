@@ -6,8 +6,7 @@
         .controller('jobListController', jobListController);
 
     /** @ngInject */
-    function jobListController(jobService, $ionicPopup) {
-
+    function jobListController(pboxLoader, jobService, $ionicPopup) {
         var vm = this;
 
         vm.jobs = [];
@@ -21,6 +20,7 @@
         /////////////////////////////////////
 
         function loadJobs() {
+            pboxLoader.loaderOn();
             return jobService.getAll()
                 .then(function (response) {
                     vm.jobs = response;
@@ -34,6 +34,9 @@
                             }]
                         });
                     }
+                })
+                .finally(function(){
+                    pboxLoader.loaderOff();
                 });
         }
     }

@@ -55,6 +55,10 @@ button.button-icon:before {
     font-weight: bold;
 }
 
+.loading-container .loading {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+}
+
 .nav-list {
     ul {
         margin-top: 44px;

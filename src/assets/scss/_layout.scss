@@ -33,16 +33,32 @@ ion-side-menu {
 
 ion-header-bar {
     background: rgba(255, 255, 255, 0.4) !important;
+    height: 60px !important;
 }
 
-ion-header-bar h1.title {
+ion-header-bar .title {
     color: #fff !important;
     font-size: 28px !important;
+    height: 60px !important;
+    line-height: 60px !important;
 }
 
 .button-stable {
     background-color: #1BD0D0 !important;
     color: #fff !important;
+}
+
+.has-header {
+    top: 60px !important;
+}
+
+.side-menu-wrapper {
+    background: rgba(255, 255, 255, 0.4) !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
 
 [nav-bar-transition=ios] [nav-bar=entering] .bar,

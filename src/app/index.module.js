@@ -17,7 +17,7 @@
             'pbox.loader',
             'pbox.nav'
         ])
-        .run(function($ionicPlatform, geolocationService, authService) {
+        .run(function($rootScope, $state, $ionicPlatform, geolocationService, authService) {
             $ionicPlatform.ready(function() {
                 if (window.cordova && window.cordova.plugins.Keyboard) {
                     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -34,6 +34,11 @@
                 }
                 geolocationService.init();
                 authService.init();
+                $rootScope.current_state = $state.current;
+                $rootScope.$on('$stateChangeSuccess', 
+                    function(event, toState, toParams, fromState, fromParams){
+                        $rootScope.current_state = toState;
+                    });
             });
         });
 })();

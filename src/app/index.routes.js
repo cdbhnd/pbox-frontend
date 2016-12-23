@@ -10,7 +10,10 @@
                     url: '/',
                     templateUrl: 'app/job/job.create.html',
                     controller: 'jobCreateController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    data: {
+                        disableBack: true
+                    }
                 })
                 .state('job-list', {
                     url: '/jobs',

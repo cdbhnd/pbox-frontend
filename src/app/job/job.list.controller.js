@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -15,14 +15,15 @@
 
         (function activate() {
             loadJobs();
-        } ());
+            console.dir(vm);
+        }());
 
         /////////////////////////////////////
 
         function loadJobs() {
             pboxLoader.loaderOn();
             return jobService.getAll()
-                .then(function (response) {
+                .then(function(response) {
                     vm.jobs = response;
                     if (response.length == 0) {
                         $ionicPopup.alert({
@@ -35,7 +36,7 @@
                         });
                     }
                 })
-                .finally(function(){
+                .finally(function() {
                     pboxLoader.loaderOff();
                 });
         }

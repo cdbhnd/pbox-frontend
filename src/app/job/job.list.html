@@ -1,12 +1,14 @@
 <ion-view>
     <ion-content padding="true" class="has-header job-list">
         <ul>
-            <li ng-repeat="j in vm.jobs track by $index">
-                <span class="job-name">Job {{$index + 1}}</span>
+            <li ng-repeat="j in vm.jobs">
+                <span class="job-name">{{j.name}}</span>
                 <br>
                 <span>Size: {{j.size}}</span>
                 <br>
                 <span>Job created: {{j.createdAt | amDateFormat: 'DD/MM/YYYY [at] hA'}}</span>
+                <br>
+                <span>Address: {{j.pickup.address}}</span>
                 <span class="job-button">></span>
             </li>
         </ul>

@@ -19,7 +19,8 @@
                     url: '/jobs',
                     templateUrl: 'app/job/job.list.html',
                     controller: 'jobListController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    cache: false
                 })
 
             $urlRouterProvider.otherwise('/');

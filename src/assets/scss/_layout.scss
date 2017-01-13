@@ -7,32 +7,39 @@
     padding-bottom: 0;
 }
 
+.bottom-bar.padding {
+    bottom: 10px;
+}
+
 .bottom-bar>* {
     margin-bottom: 0 !important;
 }
 
 .popup {
-    background-color: #1BD0D0 !important;
+    background-color: $background_primary_color !important;
     border-radius: 5px !important;
 }
 
 .popup .popup-head .popup-title,
 .popup .popup-body {
-    color: #fff !important;
+    color: $color_secondary !important;
 }
 
 .popup .popup-buttons button {
     border-radius: 5px !important;
 }
 
-ion-view,
-ion-side-menu {
+ion-view {
     background-image: url(/images/background.jpg) !important;
     background-size: cover !important;
 }
 
+ion-side-menu {
+    background-color: $background_primary_color !important;
+}
+
 ion-header-bar {
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: $background_primary_opacity !important;
     height: 60px !important;
 }
 
@@ -44,8 +51,13 @@ ion-header-bar .title {
 }
 
 .button-stable {
-    background-color: #1BD0D0 !important;
-    color: #fff !important;
+    background-color: $background_primary_opacity !important;
+    color: $color_secondary !important;
+}
+
+.button-energized {
+    background-color: $color_primary_opacity !important;
+    color: $color_secondary !important;
 }
 
 .has-header {
@@ -53,7 +65,7 @@ ion-header-bar .title {
 }
 
 .side-menu-wrapper {
-    background: rgba(255, 255, 255, 0.4) !important;
+    background: $background_primary_color !important;
     position: absolute;
     left: 0;
     top: 0;
@@ -67,10 +79,34 @@ ion-header-bar .title {
 }
 
 button.button-icon:before {
-    color: #ffc900 !important;
+    color: $color_primary !important;
     font-weight: bold;
 }
 
-.loading-container .loading {
-    background-color: rgba(255, 255, 255, 0.8) !important;
+.logo-banner {
+    text-align: center;
+    margin-top: 8%;
+}
+
+.logo-banner img {
+    width: 200px;
+}
+
+.top-buffer {
+    margin-top: 30px !important;
+}
+.top-buffer-l {
+    margin-top: 60px !important;
+}
+.top-buffer-xl {
+    margin-top: 90px !important;
+}
+.bottom-buffer {
+    margin-bottom: 30px !important;
+}
+.bottom-buffer-l {
+    margin-bottom: 60px !important;
+}
+.bottom-buffer-xl {
+    margin-bottom: 90px !important;
 }

@@ -1,19 +1,13 @@
 <ion-view>
     <ion-content padding="true" class="has-header job-create">
-        <button 
-        	class="button button-block" 
-        	ng-click="vm.selectSize('S')"
-        	ng-class="{ 'button-stable': vm.selectedSize != 'S', 'button-energized': vm.selectedSize == 'S' }">SMALL</button>
-        <button 
-        	class="button button-block" 
-        	ng-click="vm.selectSize('M')"
-        	ng-class="{ 'button-stable': vm.selectedSize != 'M', 'button-energized': vm.selectedSize == 'M' }">MEDIUM</button>
-        <button 
-        	class="button button-block" 
-        	ng-click="vm.selectSize('L')"
-        	ng-class="{ 'button-stable': vm.selectedSize != 'L', 'button-energized': vm.selectedSize == 'L' }">LARGE</button>
+        <div class="logo-banner">
+            <img src="images/logo.png" />
+        </div>
     </ion-content>
-    <div class="bottom-bar">
-        <button class="button button-energized button-full" ng-click="vm.orderJob()">ORDER NOW</button>
+    <div class="bottom-bar padding">
+        <button class="button button-block" ng-click="vm.selectSize('S')" ng-class="{ 'button-stable': vm.selectedSize != 'S', 'button-energized': vm.selectedSize == 'S' }">SMALL</button>
+        <button class="button button-block" ng-click="vm.selectSize('M')" ng-class="{ 'button-stable': vm.selectedSize != 'M', 'button-energized': vm.selectedSize == 'M' }">MEDIUM</button>
+        <button class="button button-block" ng-click="vm.selectSize('L')" ng-class="{ 'button-stable': vm.selectedSize != 'L', 'button-energized': vm.selectedSize == 'L' }">LARGE</button>
+        <button class="button button-energized button-block top-buffer" ng-click="vm.orderJob()">ORDER NOW</button>
     </div>
 </ion-view>

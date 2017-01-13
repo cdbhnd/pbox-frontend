@@ -23,10 +23,15 @@
 .popup .popup-head .popup-title,
 .popup .popup-body {
     color: $color_secondary !important;
+    font-weight: 300;
 }
 
 .popup .popup-buttons button {
     border-radius: 5px !important;
+}
+
+.popup .popup-head {
+    border-bottom: 1px solid $border_color;
 }
 
 ion-view {
@@ -73,6 +78,9 @@ ion-header-bar .title {
     bottom: 0;
 }
 
+.loading-container .loading {
+    background-color: $background_primary_opacity !important;
+}
 [nav-bar-transition=ios] [nav-bar=entering] .bar,
 [nav-bar-transition=ios] [nav-bar=active] .bar {
     background: 0 0 !important;

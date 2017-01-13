@@ -1,19 +1,7 @@
 <ion-view>
     <ion-content class="has-header job-list">
-        <!--<ul>
-            <li ng-repeat="j in vm.jobs">
-                <span class="job-name">{{j.name}}</span>
-                <br>
-                <span>Size: {{j.size}}</span>
-                <br>
-                <span>Job created: {{j.createdAt | amDateFormat: 'DD/MM/YYYY [at] hA'}}</span>
-                <br>
-                <span>Address: {{j.pickup.address}}</span>
-                <span class="job-button">></span>
-            </li>
-        </ul>-->
         <ion-list>
-            <ion-item class="item-thumbnail-left job-item" ng-repeat="j in vm.jobs">
+            <ion-item class="item-thumbnail-left job-item" ng-repeat="j in vm.jobs | orderBy: 'createdAt' : true">
                 <img class="job-img" ng-src="images/logo.png">
                 <h2>{{ j.name }}</h2>
                 <p>

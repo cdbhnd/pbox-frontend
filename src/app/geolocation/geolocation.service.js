@@ -6,7 +6,7 @@
         .service('geolocationService', geolocationService);
 
     /** @ngInject */
-    function geolocationService($q, GeolocationModel, $cordovaGeolocation) {
+    function geolocationService($q, GeolocationModel, $cordovaGeolocation, config) {
         var service = this;
 
         service.init = init;
@@ -17,6 +17,11 @@
         //////////////////////////////
 
         function init() {
+            if (config.randomCoords) {
+                setFallbackCoordinates();
+                return false;
+            }
+
             var posOptions = {
                 timeout: 10000,
                 enableHighAccuracy: false

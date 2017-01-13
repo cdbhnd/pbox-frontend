@@ -10,5 +10,6 @@
         "POST": "POST",
         "PUT": "PUT",
         "DELETE": "DELETE"
-    }
+    },
+    "randomCoords": true
 }

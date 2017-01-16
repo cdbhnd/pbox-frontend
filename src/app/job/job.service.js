@@ -11,6 +11,7 @@
 
         service.create = createJob;
         service.getAll = getAllJobs;
+        service.getJob = getJob;
 
         //////////////////////////////
 
@@ -40,6 +41,16 @@
                     }
 
                     return jobs;
+                });
+        }
+
+        function getJob(jobId) {
+            return pboxApi.http({
+                    method: config.httpMethods.GET,
+                    url: config.pboxAPI.JOBS + '/' + jobId
+                })
+                .then(function(response) {
+                    return new JobModel(response);
                 });
         }
     }

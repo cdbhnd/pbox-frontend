@@ -15,7 +15,8 @@
             'pbox.api',
             'pbox.auth',
             'pbox.loader',
-            'pbox.nav'
+            'pbox.nav',
+            'pbox.map'
         ])
         .run(function($rootScope, $state, $ionicPlatform, geolocationService, authService) {
             $ionicPlatform.ready(function() {

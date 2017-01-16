@@ -1,3 +1,7 @@
+body {
+    font-family: 'Exo', sans-serif;
+}
+
 .bottom-bar {
     position: fixed;
     left: 0;
@@ -50,7 +54,7 @@ ion-header-bar {
 
 ion-header-bar .title {
     color: #fff !important;
-    font-size: 28px !important;
+    font-size: 22px !important;
     height: 60px !important;
     line-height: 60px !important;
 }

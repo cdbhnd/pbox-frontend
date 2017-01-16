@@ -6,10 +6,11 @@
         .controller('jobListController', jobListController);
 
     /** @ngInject */
-    function jobListController(pboxLoader, jobService, $ionicPopup) {
+    function jobListController($state, pboxLoader, jobService, $ionicPopup) {
         var vm = this;
 
         vm.jobs = [];
+        vm.openJobDetails = openJobDetails;
 
         /////////////////////////////////////
 
@@ -39,6 +40,12 @@
                 .finally(function() {
                     pboxLoader.loaderOff();
                 });
+        }
+
+        function openJobDetails(job) {
+            if (job.status == 'IN_PROGRESS') {
+                $state.go('job-details', { jobId: job.id });
+            }
         }
     }
 })();

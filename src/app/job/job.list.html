@@ -1,7 +1,7 @@
 <ion-view>
     <ion-content class="has-header job-list">
         <ion-list>
-            <ion-item class="item-thumbnail-left job-item" ng-repeat="j in vm.jobs | orderBy: 'createdAt' : true">
+            <ion-item class="item-thumbnail-left job-item" ng-repeat="j in vm.jobs | orderBy: 'createdAt' : true" ng-click="vm.openJobDetails(j)">
                 <img class="job-img" ng-src="images/logo.png">
                 <h2>{{ j.name }}</h2>
                 <p>

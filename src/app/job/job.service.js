@@ -12,6 +12,8 @@
         service.create = createJob;
         service.getAll = getAllJobs;
         service.getJob = getJob;
+        service.getBox = getBox;
+        service.getSensor = getSensor;
 
         //////////////////////////////
 
@@ -51,6 +53,29 @@
                 })
                 .then(function(response) {
                     return new JobModel(response);
+                });
+        }
+
+        function getBox(boxId) {
+             return pboxApi.http({
+                    method: config.httpMethods.GET,
+                    url: config.pboxAPI.BOXES + '/' + boxId
+                })
+                .then(function(response) {
+                    return response;
+                })
+                .catch(function(err){
+                    console.log(err);
+                });
+        }
+
+        function getSensor(sensorId) {
+            return pboxApi.http({
+                    method: config.httpMethods.GET,
+                    url: config.pboxAPI.BOXES + '/' + sensorId + '/sensors'
+                })
+                .then(function(response) {
+                    return response;
                 });
         }
     }

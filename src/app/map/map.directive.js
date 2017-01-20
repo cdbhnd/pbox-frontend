@@ -16,8 +16,9 @@
             scope: {
                 mapOptions: '=',
                 mapMarkers: '=',
+                boxMarker: '=',
                 drawDirections: '&?',
-                colorsArray: '='
+                colorsArray: '=' 
             }
         };
 
@@ -78,6 +79,17 @@
                         for (var i = 0; i < markers.length; i++) {
                             bounds.extend(markers[i].getPosition());
                         }
+                        scope.map.fitBounds(bounds);
+                        return handleDirectionService();
+                    }, true);
+                    scope.$watch('boxMarker', function() {
+                        if (!scope.map || !scope.boxMarker) {
+                            return false;
+                        }
+                        buildMarker(scope.boxMarker.latitude, scope.boxMarker.longitude, scope.map, 2);
+                        var bounds = new google.maps.LatLngBounds();
+                        var position = markers.length;
+                        bounds.extend(markers[position].getPosition());
                         scope.map.fitBounds(bounds);
                         return handleDirectionService();
                     }, true);

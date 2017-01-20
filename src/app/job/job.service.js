@@ -6,7 +6,7 @@
         .service('jobService', jobService);
 
     /** @ngInject */
-    function jobService($q, pboxApi, config, JobModel) {
+    function jobService($q, pboxApi, config, JobModel, BoxModel) {
         var service = this;
 
         service.create = createJob;
@@ -62,7 +62,7 @@
                     url: config.pboxAPI.BOXES + '/' + boxId
                 })
                 .then(function(response) {
-                    return response;
+                    return new BoxModel(response);
                 })
                 .catch(function(err){
                     console.log(err);

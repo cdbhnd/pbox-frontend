@@ -1,11 +1,12 @@
 <ion-view>
     <ion-content class="has-header job-details">
         <div class="job-map">
-            <map-pane map-options="vm.mapOptions" map-markers="vm.mapMarkers" colors-array="vm.markerColors"></map-pane>
+            <map-pane map-options="vm.mapOptions" map-markers="vm.mapMarkers" box-marker="vm.box.gps_sensor.value" colors-array="vm.markerColors"></map-pane>
         </div>
         <div class="job-info">
             <div class="head padding">
-                <h3>{{ vm.job.name }}</h3>
+                <h3>{{ vm.job.name }} {{ vm.box.gps_sensor.value.latitude }}</h3>
+                <h3>{{ vm.job.name }} {{ vm.box.gps_sensor.value.longitude }}</h3>
                 <p class="quote">{{ vm.job.description }}</p>
             </div>
         </div>

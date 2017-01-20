@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -15,10 +15,17 @@
             this.address = obj && obj.address ? obj.address : '';
         }
 
-        GeolocationModel.prototype.valid = function() {
+        GeolocationModel.prototype.valid = function () {
             return (!!this.latitude && !!this.longitude);
         }
 
+        GeolocationModel.prototype.parseGpsSensorValue = function (value) {
+            var coordinates = value.split(",");
+            this.latitude = coordinates[0];
+            this.longitude = coordinates[1];
+            return this;
+        }
+        
         return GeolocationModel;
     }
 })();

@@ -58,16 +58,23 @@
 
         function loadMapMarkers() {
             return $q.when(function () {
-                vm.mapMarkers.push(vm.job.pickup);
+                setMarkerProperties(vm.job.pickup, 'images/pickup-pin.png');
                 if (!!vm.job.destination && vm.job.destination.valid()) {
-                    vm.mapMarkers.push(vm.job.destination);
+                    setMarkerProperties(vm.job.destination, 'images/destination-pin.png');
                 }
             } ());
         }
 
+        function setMarkerProperties(geolocationObj, iconPath) {
+            vm.mapMarkers.push({
+                latitude: geolocationObj.latitude,
+                longitude: geolocationObj.longitude,
+                icon: iconPath
+            });
+        }
+
         function loadMapOptions() {
             return $q.when(function () {
-                vm.mapOptions.disableDefaultUI = true;
                 vm.mapOptions.streetViewControl = false;
                 return true;
             } ());

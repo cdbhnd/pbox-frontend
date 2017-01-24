@@ -84,12 +84,12 @@
                         return handleDirectionService();
                     }, true);
                     scope.$watch('boxMarker', function () {
-        
+
                         if (!scope.map || !scope.boxMarker) {
                             return false;
                         }
 
-                        if(!!boxMarkerReference) {
+                        if (!!boxMarkerReference) {
                             boxMarkerReference.setMap(null);
                         }
 
@@ -99,9 +99,12 @@
                             position: new google.maps.LatLng(scope.boxMarker.latitude, scope.boxMarker.longitude),
                             icon: 'images/courier-location-pin.png'
                         });
-        
+
+                        scope.map.panTo(boxMarkerReference.getPosition());
+
                         return handleDirectionService();
                     }, true);
+
                 } ());
             }
 

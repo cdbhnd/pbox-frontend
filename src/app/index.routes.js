@@ -28,7 +28,7 @@
                     url: '/jobs/:jobId',
                     templateUrl: 'app/job/job.details.html',
                     controller: 'jobDetailsController',
-                    title: 'Job Info',
+                    title: 'Job Details',
                     controllerAs: 'vm',
                     cache: false
                 });

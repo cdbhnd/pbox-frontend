@@ -19,9 +19,33 @@
                 }
                 .quote {
                     font-style: italic;
-                    color: $color_secondary;
+                    color: $color_primary;
                 }
             }
+        }
+    }
+
+    .temperature-container {
+        position: absolute;
+        z-index: 9999;
+        right: 0;
+        .temp-value {
+            position: absolute;
+            top: 92px;
+            right: 35px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 44px;
+            text-align: center;
+        }
+        .cold{
+            color: $cold_color;
+        }
+        .warm{
+            color: $warm_color;
+        }
+        .hot{
+            color: $hot_color;
         }
     }
 }

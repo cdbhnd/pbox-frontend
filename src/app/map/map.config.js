@@ -13,6 +13,7 @@
                 center: null,
                 zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeControl: false,
                 zoomControl: true,
                 zoomControlOptions: {
                     position: google.maps.ControlPosition.RIGHT_BOTTOM

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -6,25 +6,28 @@
         .controller('jobListController', jobListController);
 
     /** @ngInject */
-    function jobListController($state, pboxLoader, jobService, $ionicPopup) {
+    function jobListController($interval, $q, $scope, $state, pboxLoader, jobService, $ionicPopup) {
         var vm = this;
+        var pollingPromise;
 
         vm.jobs = [];
         vm.openJobDetails = openJobDetails;
+        vm.refreshList = refreshList;
 
         /////////////////////////////////////
 
         (function activate() {
-            loadJobs();
-            console.dir(vm);
-        }());
+            loadJobs()
+                .then(pollJobs)
+                .then(cancelPollingPromiseOnScopeDestroy);
+        } ());
 
         /////////////////////////////////////
 
         function loadJobs() {
             pboxLoader.loaderOn();
             return jobService.getAll()
-                .then(function(response) {
+                .then(function (response) {
                     vm.jobs = response;
                     if (response.length == 0) {
                         $ionicPopup.alert({
@@ -37,7 +40,7 @@
                         });
                     }
                 })
-                .finally(function() {
+                .finally(function () {
                     pboxLoader.loaderOff();
                 });
         }
@@ -46,6 +49,33 @@
             if (job.status == 'IN_PROGRESS') {
                 $state.go('job-details', { jobId: job.id });
             }
+        }
+
+        function refreshList() {
+            loadJobs()
+                .then(function () {
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+        }
+
+        function pollJobs() {
+            return $q.when(function () {
+                pollingPromise = $interval(function () {
+                    return loadJobs();
+                }, 15000);
+                return true;
+            } ());
+        }
+
+        function cancelPollingPromiseOnScopeDestroy() {
+            return $q.when(function () {
+                $scope.$on('$destroy', function () {
+                    if (!!pollingPromise) {
+                        $interval.cancel(pollingPromise);
+                    }
+                });
+                return true;
+            } ());
         }
     }
 })();

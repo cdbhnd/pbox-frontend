@@ -61,7 +61,7 @@
         function pollJobs() {
             return $q.when(function () {
                 pollingPromise = $interval(function () {
-                    return loadJobs()
+                    return loadJobs();
                 }, 15000);
                 return true;
             } ());

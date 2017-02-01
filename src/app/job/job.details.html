@@ -1,13 +1,13 @@
 <ion-view>
     <ion-content class="has-header job-details">
-        <temperature temp-hum="vm.box.temp_sensor.value"></temperature>        
+        <temperature temp-hum="vm.box.temp_sensor.value"></temperature>
         <div class="job-map">
             <map-pane map-options="vm.mapOptions" map-markers="vm.mapMarkers" box-marker="vm.box.gps_sensor.value" colors-array="vm.markerColors"></map-pane>
         </div>
         <div class="job-info">
             <div class="head padding">
                 <h3>{{ vm.job.name }}</h3>
-                <p class="quote">Size: <span>{{vm.job.size}}</span></p>
+                <p class="quote">Size: <span>{{ vm.job.size }}</span></p>
                 <p class="quote">Job created <span>{{ vm.job.createdAt | amDateFormat: 'DD/MM/YYYY [at] hA' }}</span></p>
             </div>
         </div>

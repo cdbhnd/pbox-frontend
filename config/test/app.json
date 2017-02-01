@@ -1,5 +1,6 @@
 {
-	"pboxAPI": {
+
+    "pboxAPI": {
         "HOST": "https://pbox-server.herokuapp.com"
     }
 }

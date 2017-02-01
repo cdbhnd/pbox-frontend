@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -16,8 +16,9 @@
                 mapTypeControl: false,
                 zoomControl: true,
                 zoomControlOptions: {
-                    position: google.maps.ControlPosition.RIGHT_BOTTOM
+                    position: google.maps.ControlPosition.LEFT_BOTTOM
                 },
+                fullscreenControl: false,
                 streetViewControl: true,
                 streetViewControlOptions: {
                     position: google.maps.ControlPosition.RIGHT_BOTTOM

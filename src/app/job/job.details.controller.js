@@ -15,6 +15,7 @@
         vm.mapMarkers = [];
         vm.markerColors = ['#33CBCC', '#3F5877', '#F44242'];
         vm.box = null;
+        vm.mapOptions.zoom = 15;
         (function activate() {
             pboxLoader.loaderOn()
                 .then(verifyJobId)

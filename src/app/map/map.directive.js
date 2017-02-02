@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -45,11 +45,11 @@
             (function activate() {
                 subscribeOnOptionsChange()
                     .then(subscribeOnMarkersChange);
-            } ());
+            }());
 
             function subscribeOnOptionsChange() {
-                return $q.when(function () {
-                    scope.$watch('mapOptions', function () {
+                return $q.when(function() {
+                    scope.$watch('mapOptions', function() {
                         if (!scope.mapOptions.mapCenter) {
                             return false;
                         }
@@ -64,12 +64,12 @@
                         }));
                         return handleDirectionService();
                     }, true);
-                } ());
+                }());
             }
 
             function subscribeOnMarkersChange() {
-                return $q.when(function () {
-                    scope.$watch('mapMarkers', function () {
+                return $q.when(function() {
+                    scope.$watch('mapMarkers', function() {
                         if (!scope.map || !scope.mapMarkers) {
                             return false;
                         }
@@ -80,10 +80,14 @@
                         for (var i = 0; i < markers.length; i++) {
                             bounds.extend(markers[i].getPosition());
                         }
-                        scope.map.fitBounds(bounds);
+                        if (!!scope.mapOptions.zoom) {
+                            scope.map.setZoom(scope.mapOptions.zoom);
+                        } else {
+                            scope.map.fitBounds(bounds);
+                        }
                         return handleDirectionService();
                     }, true);
-                    scope.$watch('boxMarker', function () {
+                    scope.$watch('boxMarker', function() {
 
                         if (!scope.map || !scope.boxMarker) {
                             return false;
@@ -105,7 +109,7 @@
                         return handleDirectionService();
                     }, true);
 
-                } ());
+                }());
             }
 
             function buildMarker(latitude, longitude, map, i, icon) {
@@ -128,18 +132,18 @@
 
             // handle the directions service
             function handleDirectionService(latLng) {
-                return $q.when(function () {
+                return $q.when(function() {
                     if (markers.length < 2 || !scope.drawDirections) {
                         return false;
                     }
                     directionsService.route({
-                        origin: getDirectionsStart(),
-                        destination: getDirectionsEnd(),
-                        waypoints: getDirectionWaypoints(),
-                        optimizeWaypoints: true,
-                        travelMode: google.maps.TravelMode.DRIVING
-                    },
-                        function (result, status) {
+                            origin: getDirectionsStart(),
+                            destination: getDirectionsEnd(),
+                            waypoints: getDirectionWaypoints(),
+                            optimizeWaypoints: true,
+                            travelMode: google.maps.TravelMode.DRIVING
+                        },
+                        function(result, status) {
                             if (status == google.maps.DirectionsStatus.OK) {
                                 //removeMarkersFromMap();
                                 directionsDisplay.setDirections(result);
@@ -147,7 +151,7 @@
                             }
                         });
                     return true;
-                } ());
+                }());
             }
 
             function removeMarkersFromMap() {

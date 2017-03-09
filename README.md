@@ -16,7 +16,7 @@ $ sudo npm install -g ionic
 
 ## Run as Webserver
 $ gulp --%environment%
-$ ionic serve
+$ ionic serve --address localhost
 
 ## Run as Android app
 Prerequisites

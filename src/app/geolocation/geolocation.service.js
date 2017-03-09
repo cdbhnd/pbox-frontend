@@ -17,10 +17,10 @@
         //////////////////////////////
 
         function init() {
-            if (config.randomCoords) {
-                setFallbackCoordinates();
-                return false;
-            }
+            // if (config.randomCoords) {
+            //     setFallbackCoordinates();
+            //     return false;
+            // }
 
             var posOptions = {
                 timeout: 10000,
@@ -70,7 +70,7 @@
 
         function setFallbackCoordinates() {
             var randomCoords = randomGeo({
-                latitude: 44.802433, 
+                latitude: 44.802433,
                 longitude: 20.466403
             }, 10000);
             _currentLocation = new GeolocationModel({

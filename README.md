@@ -30,7 +30,7 @@ $ ionic emulate android
 *Note:* If you connect android device yo ucan run the app on the device by running:
 $ ionic run android (instead of emulate)
 
-## Run as Android app
+## Run as iOS app
 Prerequisites
 * Mac OsX
 * XCode

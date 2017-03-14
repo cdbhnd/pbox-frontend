@@ -33,8 +33,8 @@
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     });
-                    console.log('Location fetch: ');
-                    console.log(_currentLocation);
+                    // console.log('Location fetch: ');
+                    // console.log(_currentLocation);
                 }, function(err) {
                     setFallbackCoordinates();
                 });
@@ -55,8 +55,8 @@
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         });
-                        console.log('Location watch: ');
-                        console.log(_currentLocation);
+                        // console.log('Location watch: ');
+                        // console.log(_currentLocation);
                     }
                 );
         }

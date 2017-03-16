@@ -1,4 +1,4 @@
 (function (angular) {
   angular
-    .module('pbox.api', []);
+    .module('pbox.alert', []);
 }(window.angular));

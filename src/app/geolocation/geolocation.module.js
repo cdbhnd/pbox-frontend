@@ -1,6 +1,4 @@
-(function() {
-    'use strict';
-
-    angular
+(function (angular) {
+  angular
         .module('pbox.geolocation', []);
-})();
+})(window.angular);

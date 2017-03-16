@@ -1,6 +1,4 @@
-(function() {
-    'use strict';
-
-    angular
-        .module('pbox.auth', []);
-})();
+(function (angular) {
+  angular
+    .module('pbox.auth', []);
+})(window.angular);

@@ -18,7 +18,8 @@
             'pbox.nav',
             'pbox.map',
             'pbox.iot',
-            'pbox.temperature'
+            'pbox.temperature',
+            'pbox.alert'
         ])
         .run(function($rootScope, $state, $ionicPlatform, geolocationService, authService) {
             $ionicPlatform.ready(function() {

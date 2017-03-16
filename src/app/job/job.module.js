@@ -1,6 +1,4 @@
-(function() {
-    'use strict';
-
-    angular
+(function () {
+  angular
         .module('pbox.job', []);
 })();

@@ -1,6 +1,4 @@
-(function() {
-    'use strict';
-
-    angular
-        .module('pbox.iot', []);
-})();
+(function (angular) {
+  angular
+    .module('pbox.iot', []);
+})(window.angular);

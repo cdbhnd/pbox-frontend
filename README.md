@@ -16,8 +16,13 @@ Pbox-frontend app is hybrid mobile app built on following technologies:
 `$ sudo npm install -g ionic`
 
 ## Format
+### Inspect
 `$ eslint yourfile.js` (global)
 `$ ./node_modules/.bin/eslint youfile.js` (local)
+
+### Fix
+`$ eslint yourfile.js --fix` (global)
+`$ ./node_modules/.bin/eslint youfile.js --fix` (local)
 
 ## Run
 ### Webserver

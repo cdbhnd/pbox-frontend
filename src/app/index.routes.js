@@ -1,10 +1,7 @@
-(function() {
-    'use strict';
-
+(function (angular) {
     angular
         .module('pbox')
-        .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-
+        .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             $stateProvider
                 .state('job-create', {
                     url: '/',
@@ -35,4 +32,4 @@
 
             $urlRouterProvider.otherwise('/');
         }]);
-})();
+})(window.angular);

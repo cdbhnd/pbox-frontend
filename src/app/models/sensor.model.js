@@ -1,13 +1,10 @@
-(function() {
-    'use strict';
-
+(function (angular) {
     angular
         .module('pbox')
         .factory('SensorModel', SensorModelFactory);
 
-    /** @ngInject */
+    /**@ngInject */
     function SensorModelFactory() {
-
         function SensorModel(obj) {
             this.name = obj && obj.name ? obj.name : null;
             this.code = obj && obj.code ? obj.code : null;
@@ -21,4 +18,4 @@
 
         return SensorModel;
     }
-})();
+})(window.angular);

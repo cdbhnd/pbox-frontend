@@ -1,66 +1,64 @@
 (function (angular) {
-  angular
-    .module('pbox.iot')
-    .service('iotService', iotService);
+    angular
+        .module('pbox.iot')
+        .service('iotService', iotService);
 
-  /**@ngInject */
-  function iotService($rootScope, $window) {
-    var service = this;
+    /**@ngInject */
+    function iotService($rootScope, $window) {
+        var service = this;
 
-    //variables and properties
-    var host = 'https://api.allthingstalk.io:15671/stomp';
-    var listeners = {};
-    var ws = new $window.SockJS(host);
-    var s = $window.Stomp.over(ws);
-    var i;
+        //variables and properties
+        var host = 'https://api.allthingstalk.io:15671/stomp';
+        var listeners = {};
 
-    //public methods
-    service.listen = listenBox;
-    service.stopListen = stopListenBox;
-    service.stopListenAll = stopListenAllBoxes;
+        //public methods
+        service.listen = listenBox;
+        service.stopListen = stopListenBox;
+        service.stopListenAll = stopListenAllBoxes;
 
-    //////////////////////////////////
+        //////////////////////////////////
 
-    function listenBox(box) {
-      if (!!listeners[box.id]) {
-        return true;
-      }
-
-      try {
-        s.heartbeat.outgoing = 2000;
-        s.heartbeat.incoming = 0;
-
-        s.connect(box.clientId, box.clientKey, function () {
-          s.subscribe(box.topic, function (response) {
-            var data = JSON.parse(response.body);
-            box.setSensorValue(data.Id, data.Value);
-            if (!$rootScope.$$phase) {
-              $rootScope.$apply();
+        function listenBox(box) {
+            if (!!listeners[box.id]) {
+                return true;
             }
-          });
-        }, function () { }, box.clientId);
+            var ws = new $window.SockJS(host);
+            var s = $window.Stomp.over(ws);
+            try {
+                s.heartbeat.outgoing = 2000;
+                s.heartbeat.incoming = 0;
 
-        listeners[box.id] = s;
-        return true;
-      } catch (e) {
-        return false;
-      }
-    }
+                s.connect(box.clientId, box.clientKey, function () {
+                    s.subscribe(box.topic, function (response) {
+                        var data = JSON.parse(response.body);
+                        box.setSensorValue(data.Id, data.Value);
+                        if (!$rootScope.$$phase) {
+                            $rootScope.$apply();
+                        }
+                    });
+                }, function () { }, box.clientId);
 
-    function stopListenBox(boxId) {
-      if (listeners[boxId]) {
-        listeners[boxId].disconnect(function () {
-          delete listeners[boxId];
-        });
-      }
-    }
-
-    function stopListenAllBoxes() {
-      for (i in listeners) {
-        if (listeners.hasOwnProperty(i)) {
-          stopListenBox(i);
+                listeners[box.id] = s;
+                return true;
+            } catch (e) {
+                return false;
+            }
         }
-      }
+
+        function stopListenBox(boxId) {
+            if (listeners[boxId]) {
+                listeners[boxId].disconnect(function () {
+                    delete listeners[boxId];
+                });
+            }
+        }
+
+        function stopListenAllBoxes() {
+            for (var i in listeners) {
+                if (listeners.hasOwnProperty(i)) {
+                    stopListenBox(i);
+                }
+            }
+        }
     }
-  }
 })(window.angular);

@@ -1,4 +1,4 @@
 (function (angular) {
-  angular
+    angular
         .module('pbox.geolocation', []);
 })(window.angular);

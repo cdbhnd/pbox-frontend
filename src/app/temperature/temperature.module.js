@@ -1,6 +1,4 @@
-(function() {
-	'use strict';
-
-	angular
-		.module('pbox.temperature', []);
-})();
+(function (angular) {
+    angular
+      .module('pbox.temperature', []);
+})(window.angular);

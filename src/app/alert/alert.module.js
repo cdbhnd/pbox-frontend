@@ -1,4 +1,4 @@
 (function (angular) {
-  angular
-    .module('pbox.alert', []);
+    angular
+        .module('pbox.alert', []);
 }(window.angular));

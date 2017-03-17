@@ -49,6 +49,7 @@
     "eslint": "^3.17.1",
     "eslint-config-defaults": "^9.0.0",
     "eslint-plugin-angular": "^1.6.2",
+    "eslint-plugin-babel": "^4.1.1",
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },

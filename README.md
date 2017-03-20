@@ -8,38 +8,52 @@ Pbox-frontend app is hybrid mobile app built on following technologies:
 * Html 5 - http://www.w3schools.com/html/html5_intro.asp
 * CSS3 - http://www.w3schools.com/css/css3_intro.asp 
 
-## Install Cordova
-$ sudo npm install -g cordova
+## Install
+### Cordova
+* `$ sudo npm install -g cordova`
 
-## Install IONIC
-$ sudo npm install -g ionic
+### Ionic
+* `$ sudo npm install -g ionic`
 
-## Run as Webserver
-$ gulp --%environment%
-$ ionic serve --address localhost
+## Format
+### Inspect
+* `$ eslint yourfile.js` (global)
+* `$ ./node_modules/.bin/eslint youfile.js` (local)
 
-## Run as Android app
+### Fix
+* `$ eslint yourfile.js --fix` (global)
+* `$ ./node_modules/.bin/eslint youfile.js --fix` (local)
+
+## Run
+### Webserver
+* `$ npm install`
+* `$ ionic install`
+* `$ gulp --%environment%` and `$ ionic serve --address localhost`
+
+### Android app
 Prerequisites
 * Android SDK (Android Studio)
 * Virtualization enabled
 
-$ ionic platform add android
-$ ionic build android
-$ ionic emulate android
+* `$ ionic platform add android`
+* `$ ionic build android`
+* `$ ionic emulate android`
 
 *Note:* If you connect android device yo ucan run the app on the device by running:
-$ ionic run android (instead of emulate)
+* `$ ionic run android` (instead of emulate)
 
-## Run as iOS app
+### iOS app
 Prerequisites
 * Mac OsX
 * XCode
 
-$ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
+* `$ ionic platform add ios`
+* `$ ionic build ios`
+* `$ ionic emulate ios`
 
-## Publish an app on App Stor or Google Play (v1)
+## Publish
+### Publish an app on App Stor or Google Play (v1)
 https://ionicframework.com/docs/guide/publishing.html 
+
 
 

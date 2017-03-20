@@ -1,18 +1,19 @@
-(function() {
-    'use strict';
-
+(function (angular) {
     angular
         .module('pbox.auth')
         .service('authService', authService);
 
-    /** @ngInject */
+    /**@ngInject */
     function authService($q, pboxApi, config, $localStorage, UserModel) {
-
         var service = this;
 
+        //variables and properties
+        var userData = new UserModel();
+
+        //public methods
         service.init = init;
-        service.register = register;
-        service.login = login;
+        service.register = registerUser;
+        service.login = loginUser;
         service.currentUser = currentUser;
 
         //////////////////////////////////
@@ -22,39 +23,39 @@
                 .then(loginUserIfNeeded);
         }
 
-        function register(user) {
+        function registerUser(user) {
             return pboxApi.http({
-                    method: config.httpMethods.POST,
-                    url: config.pboxAPI.USERS,
-                    data: user
-                })
-                .then(function(data) {
-                    var userModel = new UserModel(data);
-                    $localStorage.current_user = userModel;
+                method: config.httpMethods.POST,
+                url: config.pboxAPI.USERS,
+                data: user
+            })
+                .then(function (response) {
+                    var userModel = new UserModel(response);
+                    $localStorage.currentUser = userModel;
                     return userModel;
                 });
         }
 
-        function login(username, password) {
+        function loginUser(username, password) {
             return pboxApi.http({
-                    method: config.httpMethods.POST,
-                    url: config.pboxAPI.TOKEN,
-                    data: {
-                        username: username,
-                        password: password
-                    }
-                })
-                .then(function(data) {
-                    var userModel = new UserModel(data);
-                    $localStorage.current_user = userModel;
+                method: config.httpMethods.POST,
+                url: config.pboxAPI.TOKEN,
+                data: {
+                    username: username,
+                    password: password
+                }
+            })
+                .then(function (response) {
+                    var userModel = new UserModel(response);
+                    $localStorage.currentUser = userModel;
                     return userModel;
                 });
         }
 
         function currentUser() {
-            return $q.when(function() {
-                if ($localStorage.current_user) {
-                    return $localStorage.current_user;
+            return $q.when(function () {
+                if ($localStorage.currentUser) {
+                    return $localStorage.currentUser;
                 }
                 return null;
             }());
@@ -71,14 +72,13 @@
         }
 
         function registerUserIfNeeded() {
-            return $q.when(function() {
+            return $q.when(function () {
                 if (!$localStorage.credentials) {
-                    var userData = new UserModel();
                     userData.username = guid();
                     userData.password = guid();
                     userData.type = 1;
-                    return register(userData)
-                        .then(function(user) {
+                    return registerUser(userData)
+                        .then(function () {
                             $localStorage.credentials = {
                                 username: userData.username,
                                 password: userData.password,
@@ -86,8 +86,8 @@
                             };
                             return true;
                         })
-                        .catch(function(errr) {
-                            return serverUnavailable($q, errr);
+                        .catch(function () {
+                            return serverUnavailable($q);
                         });
                 }
                 return true;
@@ -95,24 +95,22 @@
         }
 
         function loginUserIfNeeded() {
-            return $q.when(function() {
-                if (!!$localStorage.current_user && !!$localStorage.current_user.token) {
+            return $q.when(function () {
+                if (!!$localStorage.currentUser && !!$localStorage.currentUser.token) {
                     return true;
                 }
                 if (!$localStorage.credentials) {
-                    return serverUnavailable($q, { error: 'credentials missing' });
+                    return serverUnavailable($q);
                 }
-                return login($localStorage.credentials.username, $localStorage.credentials.password)
-                    .catch(function(error) {
-                        return serverUnavailable($q, error);
+                return loginUser($localStorage.credentials.username, $localStorage.credentials.password)
+                    .catch(function () {
+                        return serverUnavailable($q);
                     });
             }());
         }
 
-        function serverUnavailable(q, error) {
-            alert('Server unavailable at the moment, please try again later.');
-            console.log(error);
+        function serverUnavailable(q) {
             return q.reject('server unavailable');
         }
     }
-})();
+})(window.angular);

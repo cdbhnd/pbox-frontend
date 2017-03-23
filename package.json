@@ -44,7 +44,11 @@
     "stompjs": "^2.3.3"
   },
   "devDependencies": {
+    "babel-eslint": "^7.2.0",
     "bower": "^1.3.3",
+    "eslint": "^3.18.0",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-plugin-angular": "^2.2.0",
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },

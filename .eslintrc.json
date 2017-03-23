@@ -1,0 +1,38 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "defaults/configurations/airbnb/es5" 
+    ],
+    "plugins": [
+        "angular"
+    ],
+    "rules": {
+        "no-underscore-dangle": 0,
+        "no-labels": 0,
+        "indent": [0, 4],
+        "spaced-comment" : [0, "never"],
+        "func-names": 0,
+        "no-param-reassign": 0,
+        "no-use-before-define": 0,
+        "comma-dangle": [0, "never"],
+        "semi": [0, "always"],
+        "no-unsafe-negation": [0],
+        "curly": [0, "all"],
+        "default-case": [0],
+        "dot-notation": [0],
+        "no-console": 0,
+        "guard-for-in": [0],
+        "no-alert": [0],
+        "no-caller": [0],
+        "no-else-return": [0],
+        "no-empty-function": [0],
+        "strict": [0, "function"],
+        "wrap-iife": [0, "any"],
+        "max-len": [0, 130],
+        "vars-on-top": [0],
+        "block-scoped-var": [0],
+        "no-empty-label": 0,
+        "space-after-keywords": 0,
+        "space-return-throw-case": 0
+  }
+}

@@ -1,41 +1,34 @@
-(function() {
-    'use strict';
-
+(function (angular) {
     angular
         .module('pbox.geolocation')
         .service('geolocationService', geolocationService);
 
     /** @ngInject */
-    function geolocationService($q, GeolocationModel, $cordovaGeolocation, config) {
+    function geolocationService($q, GeolocationModel, $cordovaGeolocation) {
         var service = this;
 
+        //variables and properties
+        var _currentLocation;
+
+        //public methods
         service.init = init;
         service.currentLocation = currentLocation;
-
-        var _currentLocation;
 
         //////////////////////////////
 
         function init() {
-            // if (config.randomCoords) {
-            //     setFallbackCoordinates();
-            //     return false;
-            // }
-
             var posOptions = {
                 timeout: 10000,
                 enableHighAccuracy: false
             };
             $cordovaGeolocation
                 .getCurrentPosition(posOptions)
-                .then(function(position) {
+                .then(function (position) {
                     _currentLocation = new GeolocationModel({
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     });
-                    // console.log('Location fetch: ');
-                    // console.log(_currentLocation);
-                }, function(err) {
+                }, function () {
                     setFallbackCoordinates();
                 });
 
@@ -45,24 +38,22 @@
             };
             $cordovaGeolocation.watchPosition(watchOptions)
                 .then(null,
-                    function(err) {
+                    function () {
                         if (!_currentLocation) {
                             setFallbackCoordinates();
                         }
                     },
-                    function(position) {
+                    function (position) {
                         _currentLocation = new GeolocationModel({
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         });
-                        // console.log('Location watch: ');
-                        // console.log(_currentLocation);
                     }
                 );
         }
 
         function currentLocation() {
-            return $q.when(function() {
+            return $q.when(function () {
                 while (!_currentLocation) {}
                 return _currentLocation;
             }());
@@ -92,12 +83,8 @@
             var x = w * Math.cos(t);
             var y = w * Math.sin(t);
 
-            //Adjust the x-coordinate for the shrinking of the east-west distances
-            var xp = x / Math.cos(y0);
-
             var newlat = y + y0;
             var newlon = x + x0;
-            var newlon2 = xp + x0;
 
             return {
                 latitude: newlat.toFixed(8),
@@ -105,4 +92,4 @@
             };
         }
     }
-})();
+})(window.angular);

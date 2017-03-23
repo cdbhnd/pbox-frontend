@@ -1,6 +1,4 @@
-(function() {
-    'use strict';
-
+(function (angular) {
     angular
         .module('pbox.job')
         .service('jobService', jobService);
@@ -9,8 +7,8 @@
     function jobService($q, pboxApi, config, JobModel, BoxModel) {
         var service = this;
 
-        service.create = createJob;
-        service.getAll = getAllJobs;
+        service.createJob = createJob;
+        service.getAllJobs = getAllJobs;
         service.getJob = getJob;
         service.getBox = getBox;
         service.getSensor = getSensor;
@@ -23,7 +21,7 @@
                     url: config.pboxAPI.JOBS,
                     data: job
                 })
-                .then(function(data) {
+                .then(function (data) {
                     return new JobModel(data);
                 });
         }
@@ -33,7 +31,7 @@
                     method: config.httpMethods.GET,
                     url: config.pboxAPI.JOBS
                 })
-                .then(function(data) {
+                .then(function (data) {
                     var jobs = [];
 
                     if (data.length) {
@@ -51,7 +49,7 @@
                     method: config.httpMethods.GET,
                     url: config.pboxAPI.JOBS + '/' + jobId
                 })
-                .then(function(response) {
+                .then(function (response) {
                     return new JobModel(response);
                 });
         }
@@ -61,10 +59,10 @@
                     method: config.httpMethods.GET,
                     url: config.pboxAPI.BOXES + '/' + boxId
                 })
-                .then(function(response) {
+                .then(function (response) {
                     return new BoxModel(response);
                 })
-                .catch(function(err){
+                .catch(function (err) {
                     console.log(err);
                 });
         }
@@ -74,9 +72,9 @@
                     method: config.httpMethods.GET,
                     url: config.pboxAPI.BOXES + '/' + sensorId + '/sensors'
                 })
-                .then(function(response) {
+                .then(function (response) {
                     return response;
                 });
         }
     }
-})();
+})(window.angular);

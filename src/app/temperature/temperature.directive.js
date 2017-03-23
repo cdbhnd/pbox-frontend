@@ -1,13 +1,10 @@
-(function () {
-    'use strict';
-
+(function (angular) {
     angular
         .module('pbox.temperature')
         .directive('temperature', temperatureDirective);
 
     /** @ngInject */
     function temperatureDirective($q, $rootScope) {
-
         return {
             restrict: 'E',
             link: link,
@@ -18,22 +15,18 @@
             }
         };
 
-        function link(scope, element, attrs) {
-
+        function link(scope) {
             scope.image = null;
             scope.temp = null;
 
             (function activate() {
                 subscribeOnTemperatureChange();
-            } ());
+            }());
 
             function subscribeOnTemperatureChange() {
-                
                 scope.$watch('tempHum', function () {
-                    
                     if (!!scope.tempHum) {
-                        
-                        scope.temp = parseInt(scope.tempHum.temperature);
+                        scope.temp = parseInt(scope.tempHum.temperature, 10);
 
                         if (scope.temp <= 15) {
                             scope.image = 'cold';
@@ -54,4 +47,4 @@
             }
         }
     }
-})();
+})(window.angular);

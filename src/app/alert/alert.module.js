@@ -1,4 +1,4 @@
 (function (angular) {
     angular
-        .module('pbox.iot', []);
+        .module('pbox.alert', []);
 })(window.angular);

@@ -4,11 +4,11 @@
         .service('iotService', iotService);
 
     /** @ngInject */
-    function iotService($rootScope, $window) {
+    function iotService($rootScope, $window, config) {
         var service = this;
 
         //variables and properties
-        var host = 'https://api.allthingstalk.io:15671/stomp';
+        var host = config.att.HOST;
         var listeners = {};
 
         //public methods

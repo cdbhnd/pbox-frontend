@@ -8,7 +8,7 @@
         var service = this;
 
         //variables and properties
-        var _currentLocation;
+        var currentLocationObj;
 
         //public methods
         service.init = init;
@@ -24,7 +24,7 @@
             $cordovaGeolocation
                 .getCurrentPosition(posOptions)
                 .then(function (position) {
-                    _currentLocation = new GeolocationModel({
+                    currentLocationObj = new GeolocationModel({
                         latitude: position.coords.latitude,
                         longitude: position.coords.longitude
                     });
@@ -39,12 +39,12 @@
             $cordovaGeolocation.watchPosition(watchOptions)
                 .then(null,
                     function () {
-                        if (!_currentLocation) {
+                        if (!currentLocationObj) {
                             setFallbackCoordinates();
                         }
                     },
                     function (position) {
-                        _currentLocation = new GeolocationModel({
+                        currentLocationObj = new GeolocationModel({
                             latitude: position.coords.latitude,
                             longitude: position.coords.longitude
                         });
@@ -54,8 +54,8 @@
 
         function currentLocation() {
             return $q.when(function () {
-                while (!_currentLocation) {}
-                return _currentLocation;
+                while (!currentLocationObj) {}
+                return currentLocationObj;
             }());
         }
 
@@ -64,7 +64,7 @@
                 latitude: 44.802433,
                 longitude: 20.466403
             }, 10000);
-            _currentLocation = new GeolocationModel({
+            currentLocationObj = new GeolocationModel({
                 latitude: parseFloat(randomCoords.latitude),
                 longitude: parseFloat(randomCoords.longitude)
             });

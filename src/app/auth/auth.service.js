@@ -71,10 +71,11 @@
         function registerUserIfNeeded() {
             return $q.when(function () {
                 if (!$localStorage.credentials) {
+                    var userData = new UserModel();
                     userData.username = guid();
                     userData.password = guid();
                     userData.type = 1;
-                    return register(userData)
+                    return registerUser(userData)
                         .then(function () {
                             $localStorage.credentials = {
                                 username: userData.username,
@@ -99,7 +100,7 @@
                 if (!$localStorage.credentials) {
                     return serverUnavailable($q);
                 }
-                return login($localStorage.credentials.username, $localStorage.credentials.password)
+                return loginUser($localStorage.credentials.username, $localStorage.credentials.password)
                     .catch(function (error) {
                         return serverUnavailable($q, error);
                     });

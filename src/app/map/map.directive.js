@@ -106,7 +106,7 @@
                 }());
             }
 
-            function buildMarker(latitude, longitude, map, num, icon) {
+            function buildMarker(latitude, longitude, map, i, icon) {
                 markers.push(new google.maps.Marker({
                     map: map,
                     animation: google.maps.Animation.DROP,

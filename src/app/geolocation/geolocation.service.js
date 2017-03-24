@@ -31,7 +31,10 @@
                 }, function () {
                     setFallbackCoordinates();
                 });
-
+            var watchOptions = {
+                timeout: 3000,
+                enableHighAccuracy: false // may cause errors if true
+            };
             $cordovaGeolocation.watchPosition(watchOptions)
                 .then(null,
                     function () {

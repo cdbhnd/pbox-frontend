@@ -3,7 +3,7 @@
         .module('pbox')
         .factory('BoxModel', boxModelFactory);
 
-    /** @ngInject */
+    /**@ngInject */
     function boxModelFactory(iotService, GeolocationModel) {
         function BoxModel(obj) {
             this.id = obj && obj.id ? obj.id : null;
@@ -30,14 +30,14 @@
                 iotService.listen(this);
                 this.listenActive = true;
             }
-        }
+        };
 
         BoxModel.prototype.deactivate = function () {
             if (this.listenActive) {
                 iotService.stopListen(this.id);
                 this.listenActive = false;
             }
-        }
+        };
 
         BoxModel.prototype.setSensorValue = function (sensorId, value) {
             if (!!this.gpsSensor && this.gpsSensor.assetId === sensorId) {
@@ -53,7 +53,7 @@
                 this.tempSensor.value = {
                     temperature: tempHumi[0],
                     humidity: tempHumi[1]
-                }
+                };
             }
             if (!!this.accSensor && this.accSensor.assetId === sensorId) {
                 console.log('Acc sensor updated');
@@ -65,7 +65,7 @@
                     az: accelerometerValues[2]
                 };
             }
-        }
+        };
 
         return BoxModel;
 

@@ -3,10 +3,14 @@
         .module('pbox.job')
         .service('jobService', jobService);
 
-    /** @ngInject */
+    /**@ngInject */
     function jobService($q, pboxApi, config, JobModel, BoxModel) {
         var service = this;
 
+        //variables and properties
+        var jobs = [];
+
+        //public methods
         service.createJob = createJob;
         service.getAllJobs = getAllJobs;
         service.getJob = getJob;
@@ -32,14 +36,11 @@
                     url: config.pboxAPI.JOBS
                 })
                 .then(function (data) {
-                    var jobs = [];
-
                     if (data.length) {
                         for (var i = 0; i < data.length; i++) {
                             jobs[i] = new JobModel(data[i]);
                         }
                     }
-
                     return jobs;
                 });
         }
@@ -63,7 +64,6 @@
                     return new BoxModel(response);
                 })
                 .catch(function (err) {
-                    console.log(err);
                 });
         }
 

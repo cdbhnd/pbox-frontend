@@ -2,7 +2,6 @@
     angular
         .module('pbox.iot')
         .service('iotService', iotService);
-
     /** @ngInject */
     function iotService($rootScope, $window, config) {
         var service = this;
@@ -16,13 +15,12 @@
         service.stopListen = stopListenBox;
         service.stopListenAll = stopListenAllBoxes;
 
-        //////////////////////////////////////
+        //////////////////////////////////
 
         function listenBox(box) {
             if (!!listeners[box.id]) {
                 return true;
             }
-
             try {
                 var ws = new $window.SockJS(host);
                 var s = $window.Stomp.over(ws);

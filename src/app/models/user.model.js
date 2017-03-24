@@ -3,7 +3,7 @@
         .module('pbox')
         .factory('UserModel', userModelFactory);
 
-    /** @ngInject */
+    /**@ngInject */
     function userModelFactory() {
         function UserModel(obj) {
             this.id = obj && obj.id ? obj.id : null;

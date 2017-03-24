@@ -3,7 +3,7 @@
         .module('pbox')
         .factory('JobModel', jobModelFactory);
 
-    /** @ngInject */
+    /**@ngInject */
     function jobModelFactory(moment, GeolocationModel) {
         function JobModel(obj) {
             this.id = obj && obj.id ? obj.id : null;

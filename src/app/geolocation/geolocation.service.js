@@ -32,10 +32,6 @@
                     setFallbackCoordinates();
                 });
 
-            var watchOptions = {
-                timeout: 3000,
-                enableHighAccuracy: false // may cause errors if true
-            };
             $cordovaGeolocation.watchPosition(watchOptions)
                 .then(null,
                     function () {
@@ -73,7 +69,7 @@
         function randomGeo(center, radius) {
             var y0 = center.latitude;
             var x0 = center.longitude;
-            var rd = radius / 111300; //about 111300 meters in one degree
+            var rd = radius / 111300;
 
             var u = Math.random();
             var v = Math.random();

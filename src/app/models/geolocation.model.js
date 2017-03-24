@@ -3,7 +3,7 @@
         .module('pbox')
         .factory('GeolocationModel', geolocationModelFactory);
 
-    /** @ngInject */
+    /**@ngInject */
     function geolocationModelFactory() {
         function GeolocationModel(obj) {
             this.latitude = obj && obj.latitude ? obj.latitude : null;
@@ -14,14 +14,14 @@
 
         GeolocationModel.prototype.valid = function () {
             return (!!this.latitude && !!this.longitude);
-        }
+        };
 
         GeolocationModel.prototype.parseGpsSensorValue = function (value) {
             var coordinates = value.split(',');
             this.latitude = coordinates[0];
             this.longitude = coordinates[1];
             return this;
-        }
+        };
 
         return GeolocationModel;
     }

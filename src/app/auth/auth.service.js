@@ -3,14 +3,14 @@
         .module('pbox.auth')
         .service('authService', authService);
 
-    /** @ngInject */
+    /**@ngInject */
     function authService($q, pboxApi, config, $localStorage, UserModel) {
         var service = this;
 
         //public methods
         service.init = init;
-        service.register = register;
-        service.login = login;
+        service.register = registerUser;
+        service.login = loginUser;
         service.currentUser = currentUser;
 
         //////////////////////////////////
@@ -20,7 +20,7 @@
                 .then(loginUserIfNeeded);
         }
 
-        function register(user) {
+        function registerUser(user) {
             return pboxApi.http({
                     method: config.httpMethods.POST,
                     url: config.pboxAPI.USERS,
@@ -33,7 +33,7 @@
                 });
         }
 
-        function login(username, password) {
+        function loginUser(username, password) {
             return pboxApi.http({
                     method: config.httpMethods.POST,
                     url: config.pboxAPI.TOKEN,
@@ -71,7 +71,6 @@
         function registerUserIfNeeded() {
             return $q.when(function () {
                 if (!$localStorage.credentials) {
-                    var userData = new UserModel();
                     userData.username = guid();
                     userData.password = guid();
                     userData.type = 1;
@@ -98,7 +97,7 @@
                     return true;
                 }
                 if (!$localStorage.credentials) {
-                    return serverUnavailable($q, { error: 'credentials missing' });
+                    return serverUnavailable($q);
                 }
                 return login($localStorage.credentials.username, $localStorage.credentials.password)
                     .catch(function (error) {

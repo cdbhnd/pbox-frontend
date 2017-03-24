@@ -3,7 +3,7 @@
         .module('pbox.map')
         .directive('mapPane', mapPaneDirective);
 
-    /** @ngInject */
+    /**@ngInject */
     function mapPaneDirective($q) {
         return {
             restrict: 'E',
@@ -20,6 +20,7 @@
         };
 
         function link(scope) {
+            //variables and properties
             var markerIcon = {
                 path: 'M0-48c-9.8 0-17.7 7.8-17.7 17.4 0 15.5 17.7 30.6 17.7 30.6s17.7-15.4 17.7-30.6c0-9.6-7.9-17.4-17.7-17.4z',
                 fillColor: '#3F5877',
@@ -37,7 +38,7 @@
             scope.map = null;
             scope.drawDirections = !!scope.drawDirections;
 
-            (function activate() {
+            (function () {
                 subscribeOnOptionsChange()
                     .then(subscribeOnMarkersChange);
             }());
@@ -105,7 +106,7 @@
                 }());
             }
 
-            function buildMarker(latitude, longitude, map, i, icon) {
+            function buildMarker(latitude, longitude, map, num, icon) {
                 markers.push(new google.maps.Marker({
                     map: map,
                     animation: google.maps.Animation.DROP,
@@ -114,16 +115,15 @@
                 }));
             }
 
-            function createIcon(i) {
-                if (!!scope.colorsArray && !!scope.colorsArray[i]) {
-                    markerIcon.fillColor = scope.colorsArray[i];
-                    return markerIcon;
-                } else {
+            function createIcon(num) {
+                if (!!scope.colorsArray && !!scope.colorsArray[num]) {
+                    markerIcon.fillColor = scope.colorsArray[num];
                     return markerIcon;
                 }
+                return markerIcon;
             }
 
-            // handle the directions service
+            //handle the directions service
             function handleDirectionService() {
                 return $q.when(function () {
                     if (markers.length < 2 || !scope.drawDirections) {

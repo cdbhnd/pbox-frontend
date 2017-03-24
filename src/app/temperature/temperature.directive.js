@@ -3,7 +3,7 @@
         .module('pbox.temperature')
         .directive('temperature', temperatureDirective);
 
-    /** @ngInject */
+    /**@ngInject */
     function temperatureDirective($q, $rootScope) {
         return {
             restrict: 'E',
@@ -19,7 +19,7 @@
             scope.image = null;
             scope.temp = null;
 
-            (function activate() {
+            (function () {
                 subscribeOnTemperatureChange();
             }());
 

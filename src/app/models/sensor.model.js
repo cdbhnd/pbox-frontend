@@ -3,7 +3,7 @@
         .module('pbox')
         .factory('SensorModel', SensorModelFactory);
 
-    /** @ngInject */
+    /**@ngInject */
     function SensorModelFactory() {
         function SensorModel(obj) {
             this.name = obj && obj.name ? obj.name : null;

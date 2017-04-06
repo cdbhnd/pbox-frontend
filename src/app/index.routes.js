@@ -29,7 +29,6 @@
                     controllerAs: 'vm',
                     cache: false
                 });
-
             $urlRouterProvider.otherwise('/');
         }]);
 })(window.angular);

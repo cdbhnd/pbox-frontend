@@ -12,5 +12,8 @@
         "PUT": "PUT",
         "DELETE": "DELETE"
     },
-    "randomCoords": true
+    "randomCoords": true,
+    "att": {
+        "HOST": "https://api.allthingstalk.io:15671/stomp"
+    }
 }

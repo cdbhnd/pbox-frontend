@@ -2,13 +2,12 @@
     angular
         .module('pbox.iot')
         .service('iotService', iotService);
-
-    /**@ngInject */
-    function iotService($rootScope, $window) {
+    /** @ngInject */
+    function iotService($rootScope, $window, config) {
         var service = this;
 
         //variables and properties
-        var host = 'https://api.allthingstalk.io:15671/stomp';
+        var host = config.att.HOST;
         var listeners = {};
 
         //public methods
@@ -22,9 +21,10 @@
             if (!!listeners[box.id]) {
                 return true;
             }
-            var ws = new $window.SockJS(host);
-            var s = $window.Stomp.over(ws);
             try {
+                var ws = new $window.SockJS(host);
+                var s = $window.Stomp.over(ws);
+
                 s.heartbeat.outgoing = 2000;
                 s.heartbeat.incoming = 0;
 
@@ -46,11 +46,13 @@
         }
 
         function stopListenBox(boxId) {
-            if (listeners[boxId]) {
-                listeners[boxId].disconnect(function () {
-                    delete listeners[boxId];
-                });
-            }
+            try {
+                if (listeners[boxId]) {
+                    listeners[boxId].disconnect(function () {
+                        delete listeners[boxId];
+                    });
+                }
+            } catch (e) {}
         }
 
         function stopListenAllBoxes() {

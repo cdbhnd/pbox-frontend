@@ -4,8 +4,7 @@
         .controller('jobCreateController', jobCreateController);
 
     /**@ngInject */
-    function jobCreateController(pboxLoader, $scope, $q, $ionicPopup,
-        $state, jobService, geolocationService, pboxAlert) {
+    function jobCreateController(pboxLoader, $scope, $q, $ionicPopup, $state, jobService, geolocationService, pboxAlert) {
         var vm = this;
 
         //variables and properties

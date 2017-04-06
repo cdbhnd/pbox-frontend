@@ -3,28 +3,24 @@
         .module('pbox.geolocation')
         .service('geolocationService', geolocationService);
 
-    /**@ngInject */
+    /** @ngInject */
     function geolocationService($q, GeolocationModel, $cordovaGeolocation) {
         var service = this;
 
         //variables and properties
         var currentLocationObj;
-        var watchOptions = {
-            timeout: 3000,
-            enableHighAccuracy: false
-        };
-        var posOptions = {
-            timeout: 10000,
-            enableHighAccuracy: false
-        };
 
         //public methods
         service.init = init;
         service.currentLocation = currentLocation;
 
-        //////////////////////////////////
+        //////////////////////////////
 
         function init() {
+            var posOptions = {
+                timeout: 10000,
+                enableHighAccuracy: false
+            };
             $cordovaGeolocation
                 .getCurrentPosition(posOptions)
                 .then(function (position) {
@@ -35,26 +31,29 @@
                 }, function () {
                     setFallbackCoordinates();
                 });
-
+            var watchOptions = {
+                timeout: 3000,
+                enableHighAccuracy: false // may cause errors if true
+            };
             $cordovaGeolocation.watchPosition(watchOptions)
                 .then(null,
-                function () {
-                    if (!currentLocationObj) {
-                        setFallbackCoordinates();
+                    function () {
+                        if (!currentLocationObj) {
+                            setFallbackCoordinates();
+                        }
+                    },
+                    function (position) {
+                        currentLocationObj = new GeolocationModel({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        });
                     }
-                },
-                function (position) {
-                    currentLocationObj = new GeolocationModel({
-                        latitude: position.coords.latitude,
-                        longitude: position.coords.longitude
-                    });
-                }
                 );
         }
 
         function currentLocation() {
             return $q.when(function () {
-                while (!currentLocationObj) { }
+                while (!currentLocationObj) {}
                 return currentLocationObj;
             }());
         }

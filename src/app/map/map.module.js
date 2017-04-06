@@ -1,4 +1,4 @@
 (function (angular) {
-    angular
-        .module('pbox.map', []);
+	angular
+		.module('pbox.map', []);
 })(window.angular);

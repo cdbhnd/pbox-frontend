@@ -5,11 +5,6 @@
 
     /**@ngInject */
     function boxModelFactory(iotService, GeolocationModel) {
-        //variables and properties
-        var geolocationModel;
-        var tempHumi;
-        var accelerometerValues;
-
         function BoxModel(obj) {
             this.id = obj && obj.id ? obj.id : null;
             this.code = obj && obj.code ? obj.code : null;
@@ -27,7 +22,7 @@
             this.accSensor = obj && obj.sensors ? findSensor(obj.sensors, 'ACCELEROMETER') : null;
 
             this.listenActive = false;
-            this.Sensors = obj && obj.sensors ? obj.sensors : [];
+            this.sensors = obj && obj.sensors ? obj.sensors : [];
         }
 
         BoxModel.prototype.activate = function () {
@@ -45,20 +40,26 @@
         };
 
         BoxModel.prototype.setSensorValue = function (sensorId, value) {
-            if (!!this.gps_sensor && this.gps_sensor.assetId === sensorId) {
-                geolocationModel = new GeolocationModel();
-                this.gps_sensor.value = geolocationModel.parseGpsSensorValue(value);
+            if (!!this.gpsSensor && this.gpsSensor.assetId === sensorId) {
+                console.log('GPS sensor updated');
+                console.log(value);
+                var geolocationModel = new GeolocationModel();
+                this.gpsSensor.value = geolocationModel.parseGpsSensorValue(value);
             }
-            if (!!this.temp_sensor && this.temp_sensor.assetId === sensorId) {
-                tempHumi = value.split(',');
-                this.temp_sensor.value = {
+            if (!!this.tempSensor && this.tempSensor.assetId === sensorId) {
+                console.log('Temp sensor updated');
+                console.log(value);
+                var tempHumi = value.split(',');
+                this.tempSensor.value = {
                     temperature: tempHumi[0],
                     humidity: tempHumi[1]
                 };
             }
-            if (!!this.acc_sensor && this.acc_sensor.assetId === sensorId) {
-                accelerometerValues = value.split(',');
-                this.acc_sensor.value = {
+            if (!!this.accSensor && this.accSensor.assetId === sensorId) {
+                console.log('Acc sensor updated');
+                console.log(value);
+                var accelerometerValues = value.split(',');
+                this.accSensor.value = {
                     ax: accelerometerValues[0],
                     ay: accelerometerValues[1],
                     az: accelerometerValues[2]

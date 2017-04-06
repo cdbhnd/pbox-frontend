@@ -1,4 +1,4 @@
 (function (angular) {
     angular
         .module('pbox.api', []);
-}(window.angular));
+})(window.angular);

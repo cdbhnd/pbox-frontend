@@ -106,12 +106,12 @@
                 }());
             }
 
-            function buildMarker(latitude, longitude, map, num, icon) {
+            function buildMarker(latitude, longitude, map, i, icon) {
                 markers.push(new google.maps.Marker({
                     map: map,
                     animation: google.maps.Animation.DROP,
                     position: new google.maps.LatLng(latitude, longitude),
-                    icon: icon || createIcon(num)
+                    icon: icon || createIcon(i)
                 }));
             }
 
@@ -130,12 +130,12 @@
                         return false;
                     }
                     directionsService.route({
-                        origin: getDirectionsStart(),
-                        destination: getDirectionsEnd(),
-                        waypoints: getDirectionWaypoints(),
-                        optimizeWaypoints: true,
-                        travelMode: google.maps.TravelMode.DRIVING
-                    },
+                            origin: getDirectionsStart(),
+                            destination: getDirectionsEnd(),
+                            waypoints: getDirectionWaypoints(),
+                            optimizeWaypoints: true,
+                            travelMode: google.maps.TravelMode.DRIVING
+                        },
                         function (result, status) {
                             if (status === google.maps.DirectionsStatus.OK) {
                                 directionsDisplay.setDirections(result);

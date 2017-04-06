@@ -7,9 +7,6 @@
     function authService($q, pboxApi, config, $localStorage, UserModel) {
         var service = this;
 
-        //variables and properties
-        var userData = new UserModel();
-
         //public methods
         service.init = init;
         service.register = registerUser;
@@ -25,37 +22,37 @@
 
         function registerUser(user) {
             return pboxApi.http({
-                method: config.httpMethods.POST,
-                url: config.pboxAPI.USERS,
-                data: user
-            })
-                .then(function (response) {
-                    var userModel = new UserModel(response);
-                    $localStorage.currentUser = userModel;
+                    method: config.httpMethods.POST,
+                    url: config.pboxAPI.USERS,
+                    data: user
+                })
+                .then(function (data) {
+                    var userModel = new UserModel(data);
+                    $localStorage.current_user = userModel;
                     return userModel;
                 });
         }
 
         function loginUser(username, password) {
             return pboxApi.http({
-                method: config.httpMethods.POST,
-                url: config.pboxAPI.TOKEN,
-                data: {
-                    username: username,
-                    password: password
-                }
-            })
-                .then(function (response) {
-                    var userModel = new UserModel(response);
-                    $localStorage.currentUser = userModel;
+                    method: config.httpMethods.POST,
+                    url: config.pboxAPI.TOKEN,
+                    data: {
+                        username: username,
+                        password: password
+                    }
+                })
+                .then(function (data) {
+                    var userModel = new UserModel(data);
+                    $localStorage.current_user = userModel;
                     return userModel;
                 });
         }
 
         function currentUser() {
             return $q.when(function () {
-                if ($localStorage.currentUser) {
-                    return $localStorage.currentUser;
+                if ($localStorage.current_user) {
+                    return $localStorage.current_user;
                 }
                 return null;
             }());
@@ -74,6 +71,7 @@
         function registerUserIfNeeded() {
             return $q.when(function () {
                 if (!$localStorage.credentials) {
+                    var userData = new UserModel();
                     userData.username = guid();
                     userData.password = guid();
                     userData.type = 1;
@@ -86,8 +84,8 @@
                             };
                             return true;
                         })
-                        .catch(function () {
-                            return serverUnavailable($q);
+                        .catch(function (errr) {
+                            return serverUnavailable($q, errr);
                         });
                 }
                 return true;
@@ -96,15 +94,15 @@
 
         function loginUserIfNeeded() {
             return $q.when(function () {
-                if (!!$localStorage.currentUser && !!$localStorage.currentUser.token) {
+                if (!!$localStorage.current_user && !!$localStorage.current_user.token) {
                     return true;
                 }
                 if (!$localStorage.credentials) {
                     return serverUnavailable($q);
                 }
                 return loginUser($localStorage.credentials.username, $localStorage.credentials.password)
-                    .catch(function () {
-                        return serverUnavailable($q);
+                    .catch(function (error) {
+                        return serverUnavailable($q, error);
                     });
             }());
         }

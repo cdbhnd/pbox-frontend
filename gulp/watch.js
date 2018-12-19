@@ -21,8 +21,8 @@
 
         gulp.watch(
             [
-                config.paths.src + '/assets/css/*.scss',
-                config.paths.src + '/assets/css/**/*.scss'
+                config.paths.src + '/assets/scss/*.scss',
+                config.paths.src + '/assets/scss/**/*.scss'
             ], ['reload-css']);
 
         gulp.watch(

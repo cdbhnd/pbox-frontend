@@ -1,0 +1,20 @@
+<ion-view>
+    <ion-content class="has-header job-list">
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.refreshList()"></ion-refresher>
+        <ion-list>
+            <ion-item class="item-thumbnail-left job-item" ng-repeat="j in vm.jobs | orderBy: 'createdAt' : true" ng-click="vm.openJobDetails(j)">
+                <img class="job-img" ng-src="images/logo.png">
+                <h2>{{ j.name }}</h2>
+                <p>
+                    {{ j.status }} | SIZE {{ j.size }}
+                </p>
+                <p>
+                    <span>{{ j.createdAt | amDateFormat: 'DD/MM/YYYY [at] hA' }}</span>
+                </p>
+                <p>
+                    <span>{{ j.pickup.address }}</span>
+                </p>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

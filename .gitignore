@@ -6,3 +6,7 @@ platforms/
 plugins/
 www/
 .tmp/
+res/
+resources/
+rev-manifest.json
+*.log

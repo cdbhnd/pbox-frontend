@@ -1,0 +1,124 @@
+body {
+    font-family: 'Exo', sans-serif;
+}
+
+.bottom-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.bottom-bar.padding {
+    bottom: 10px;
+}
+
+.bottom-bar>* {
+    margin-bottom: 0 !important;
+}
+
+.popup {
+    background-color: $background_primary_color !important;
+    border-radius: 5px !important;
+}
+
+.popup .popup-head .popup-title,
+.popup .popup-body {
+    color: $color_secondary !important;
+    font-weight: 300;
+}
+
+.popup .popup-buttons button {
+    border-radius: 5px !important;
+}
+
+.popup .popup-head {
+    border-bottom: 1px solid $border_color;
+}
+
+ion-view {
+    background-image: url(/images/background-new.jpg) !important;
+    background-size: cover !important;
+}
+
+ion-side-menu {
+    background-color: $background_primary_color !important;
+}
+
+ion-header-bar {
+    background: $background_primary_opacity !important;
+    height: 60px !important;
+}
+
+ion-header-bar .title {
+    color: #fff !important;
+    font-size: 22px !important;
+    height: 60px !important;
+    line-height: 60px !important;
+}
+
+.button-stable {
+    background-color: $background_primary_opacity !important;
+    color: $color_secondary !important;
+}
+
+.button-energized {
+    background-color: $color_primary_opacity !important;
+    color: $color_secondary !important;
+}
+
+.has-header {
+    top: 60px !important;
+}
+
+.side-menu-wrapper {
+    background: $background_primary_color !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.loading-container .loading {
+    background-color: $background_primary_opacity !important;
+}
+[nav-bar-transition=ios] [nav-bar=entering] .bar,
+[nav-bar-transition=ios] [nav-bar=active] .bar {
+    background: 0 0 !important;
+}
+
+button.button-icon:before {
+    color: $color_primary !important;
+    font-weight: bold;
+}
+
+.logo-banner {
+    text-align: center;
+    margin-top: 8%;
+}
+
+.logo-banner img {
+    width: 200px;
+}
+
+.top-buffer {
+    margin-top: 30px !important;
+}
+.top-buffer-l {
+    margin-top: 60px !important;
+}
+.top-buffer-xl {
+    margin-top: 90px !important;
+}
+.bottom-buffer {
+    margin-bottom: 30px !important;
+}
+.bottom-buffer-l {
+    margin-bottom: 60px !important;
+}
+.bottom-buffer-xl {
+    margin-bottom: 90px !important;
+}

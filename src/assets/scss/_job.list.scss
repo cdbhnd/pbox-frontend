@@ -1,0 +1,50 @@
+.job-list {
+    .list {
+        .job-item {
+            position: relative;
+            background-color: $background_primary_opacity !important;
+            margin-bottom: 10px;
+            cursor: pointer;
+            padding-left: 70px;
+            border: 0;
+            margin-top: 5px;
+            margin-bottom: 0;
+            padding-bottom: 10px;
+            min-height: auto;
+            h2 {
+                color: $color_primary;
+                margin-bottom: 5px;
+                font-weight: 600;
+            }
+            .job-img {
+                width: 70px;
+                height: auto;
+                left: 0;
+                top: 5px;
+            }
+            span {
+                color: $color_secondary !important;
+            }
+            p {
+                color: $color_secondary;
+                font-size: 12px;
+                margin: 0;
+                line-height: 15px;
+            }
+        }
+    }
+    .padding {
+        padding: 40px 0;
+    }
+    .job-name {
+        font-size: 25px;
+        color: $color_primary !important;
+    }
+    .job-button {
+        position: absolute;
+        top: 22px;
+        right: 12px;
+        font-size: 35px;
+        color: $color_primary !important;
+    }
+}
